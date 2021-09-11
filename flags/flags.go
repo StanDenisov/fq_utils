@@ -2,6 +2,7 @@ package flags
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"os"
 
@@ -19,7 +20,9 @@ func GetAppConfig(appMod string, appName string) (confstruct.ConfStruct, error) 
 	}
 	jsonFile, err := os.Open("../conf/conf.json")
 	if err != nil {
-		panic("file not recongnized" + err.Error())
+		fmt.Println(appMod)
+		fmt.Println(appName)
+		panic("file not recongnized " + err.Error())
 	}
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	var confStruct confstruct.ConfStruct
