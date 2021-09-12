@@ -1,0 +1,8 @@
+{
+  "app_name": "Super hero squad",
+  "app_mod": "Metro City",
+  "PgDBPort": "2016",
+  "PgDBPassword": "Super tower",
+  "PgDBUsernname": "test",
+  "PgDBName": "test"
+}

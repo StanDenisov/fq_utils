@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 
 	"github.com/StanDenisov/fq_utils/confclient"
 	"github.com/StanDenisov/fq_utils/confstruct"
@@ -14,11 +15,17 @@ func GetAppConfig(appMod string, appName string) (confstruct.ConfStruct, error) 
 	if appMod != "" {
 		confStruct, err := confclient.GetConfig(appMod, appName)
 		if err != nil {
-			panic("omg conf structure not recognize")
+			fmt.Println(err)
 		}
 		return confStruct, err
 	}
-	jsonFile, err := os.Open("../conf/conf.json")
+	ex, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	exPath := filepath.Dir(ex)
+	fmt.Println(exPath)
+	jsonFile, err := os.Open(exPath + "/conf/conf.json")
 	if err != nil {
 		fmt.Println(appMod)
 		fmt.Println(appName)
