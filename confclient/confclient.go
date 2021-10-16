@@ -15,8 +15,8 @@ import (
 )
 
 type ResponseForConf struct {
-	AppMode string
-	AppName string
+	AppMode string `json:"app_mode,omitempty"`
+	AppName string `json:"app_name,omitempty"`
 }
 
 //ParseFlagsAndGetConfig - take 2 flags (1: -mod 2:-name)
@@ -63,12 +63,12 @@ func sendRequestToConfigServer(appMode string, appName string) (confstruct.ConfS
 		log.Fatalln(err)
 		return conf, err
 	}
-	json.NewDecoder(resp.Body).Decode(conf)
+	json.NewDecoder(resp.Body).Decode(&conf)
 	return conf, err
 }
 
 func parse_flags() (string, string) {
-	appMod := flag.String("mod", "test", "a app_mod for get config")
+	appMod := flag.String("mode", "test", "a app_mod for get config")
 	appName := flag.String("name", "", "a app_name for get config")
 	flag.Parse()
 	return *appMod, *appName
