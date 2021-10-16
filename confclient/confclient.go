@@ -58,7 +58,7 @@ func sendRequestToConfigServer(appMode string, appName string) (confstruct.ConfS
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	resp, err := http.Post("https://localhost:13200", "application/json", bytes.NewBuffer(jsonResp))
+	resp, err := http.Post("http://localhost:13200", "application/json", bytes.NewBuffer(jsonResp))
 	if err != nil {
 		log.Fatalln(err)
 		return conf, err
