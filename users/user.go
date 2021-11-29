@@ -1,11 +1,14 @@
 package users
 
-import "gorm.io/gorm"
+import (
+	"github.com/StanDenisov/fq_utils/profile"
+	"gorm.io/gorm"
+)
 
 type User struct {
 	gorm.Model
-	Email     string
-	Phone     string
-	Password  string
-	ProfileId uint
+	Email    string
+	Phone    string
+	Password string
+	Profile  profile.Profile
 }
